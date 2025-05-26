@@ -16,18 +16,18 @@ This application was developed as part of the IU Portfolio Project for the modul
   - Longest streak overall
   - Habits due today
 -  Habit filtering by periodicity  
--  Built-in Unit Testing using `pytest`
+-  Built-in Unit Testing using `pytest` and `poetry`
 
 ---
 
-##  Technologies Used
+## Technologies Used
 
-- Python 3.11+
-- SQLite (via `sqlite3`)
-- `Click` for building CLI commands
-- `pytest` for testing
-- Functional programming principles
-- Modular architecture with separation of concerns
+- Python 3.10+
+- SQLite for data storage
+- Click for CLI interactions
+- Pytest for unit testing
+- Functional Programming with map, filter, reduce, and immutability principles
+- Modular OOP Structure
 
 ---
 
@@ -53,20 +53,26 @@ HabitTracker/
 │       └── test_habit.py
 ```
 
-## Hot ro Run
+## How to Run
 
 ### 1. Clone the repository
 
-  ```bash
+```bash
 git clone https://github.com/Katsiatyna/HabitTracker.git
 cd HabitTracker
-  ```
+```
 
-### 2. Lunch Application
+### 2. Install Dependencies
 
-  ```bash
+```bash
+poetry install
+```
+
+### 3. Launch Application
+
+```bash
 python src/main.py
-  ```
+```
 
 ## Running Test
 
@@ -78,14 +84,6 @@ This will run all tests across:
 - Habit, User, and Completion model logic
 - Database operations (DatabaseHandler)
 - Analytics functions (get_longest_streak, habits_to_complete_today, etc.)
-
-## Technologies Used
-
-- Python 3.10+
-- SQLite for data storage
-- Click for CLI interactions
-- Pytest for unit testing
-- Functional Programming with map, filter, reduce, and immutability principles
 
 ## Author
 
