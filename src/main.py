@@ -10,7 +10,7 @@ The analytics module is implemented using functional programming techniques to a
 """
 
 import click
-from database.db_handler import DatabaseHandler
+from src.database.db_handler import DatabaseHandler
 from datetime import datetime, timedelta
 from src.analytics.analytics import get_longest_streak, get_longest_streak_for_habit
 from src.analytics.analytics import get_all_streaks
