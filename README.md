@@ -22,7 +22,7 @@ This application was developed as part of the IU Portfolio Project for the modul
 
 ## Technologies Used
 
-- Python 3.10+
+- Python 3.11+
 - SQLite for data storage
 - Click for CLI interactions
 - Pytest for unit testing
@@ -62,17 +62,24 @@ git clone https://github.com/Katsiatyna/HabitTracker.git
 cd HabitTracker
 ```
 
-### 2. Install Dependencies
+### 2. Install Poetry (if not already installed)
 
+```bash
+pip install poetry
+```
+
+### 3. Install Dependencies
 ```bash
 poetry install
 ```
 
-### 3. Launch Application
+### 4. Launch Application
 
 ```bash
-python src/main.py
+poetry run python -m src.main
 ```
+
+Database and table are created automatically when the app starts - no migration/setup script is needed.
 
 ## Running Test
 
