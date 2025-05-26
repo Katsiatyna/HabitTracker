@@ -108,6 +108,60 @@ def test_get_longest_streak_for_habit(db):
     assert streak_reading == 2, f"Expected 2 for Reading, got {streak_reading}"
     assert streak_meditation == 2, f"Expected 2 for Meditation, got {streak_meditation}"
 
+def test_get_all_habits(db):
+    """
+    Test to verify that all habits are retrieved correctly.
+    """
+    habits = get_all_habits(db, 1)
+    assert len(habits) == 3
+    habit_names = {habit['name'] for habit in habits}
+    assert habit_names == {"Exercise", "Reading", "Meditation"}
+
+def test_get_habits_by_periodicity(db):
+    """
+    Test to verify that habits are correctly filtered by periodicity.
+    """
+    daily_habits = get_habits_by_periodicity(db, 1, 1)  # Daily
+    weekly_habits = get_habits_by_periodicity(db, 1, 7)  # Weekly
+    flexible_habits = get_habits_by_periodicity(db, 1, 5)  # Every 5 days
+
+    assert len(daily_habits) == 1
+    assert daily_habits[0]['name'] == "Exercise"
+    assert len(weekly_habits) == 1
+    assert weekly_habits[0]['name'] == "Reading"
+    assert len(flexible_habits) == 1
+    assert flexible_habits[0]['name'] == "Meditation"
+
+def test_get_longest_streak(db):
+    """
+    Test to find the habit with the longest streak among all user habits.
+    """
+    # Add additional completions to simulate edge cases
+    db.add_completion(1, "2023-09-01T15:00:00")  # Exercise - daily streak of 3
+    db.add_completion(2, "2023-09-06T15:00:00")  # Reading - 7-day gap continuation
+    db.add_completion(3, "2023-09-09T15:00:00")  # Meditation - 5-day gap
+
+    habit, streak = get_longest_streak(db, 1)
+    assert habit is not None, "Longest habit not found"
+    assert habit['name'] == "Exercise", f"Expected 'Exercise', but got {habit['name']}"
+    assert streak == 3, f"Expected 3, but got {streak}"
+
+def test_get_longest_streak_for_habit(db):
+    """
+    Test to find the longest streak for a specific habit.
+    """
+    db.add_completion(1, "2023-09-01T15:00:00")  # Exercise - daily streak of 3
+    db.add_completion(2, "2023-09-06T15:00:00")  # Reading - 7-day gap continuation
+    db.add_completion(3, "2023-09-09T15:00:00")  # Meditation - 5-day gap
+
+    streak_exercise = get_longest_streak_for_habit(db, 1, 1)  # Daily
+    streak_reading = get_longest_streak_for_habit(db, 2, 7)   # Weekly
+    streak_meditation = get_longest_streak_for_habit(db, 3, 5) # Every 5 days
+
+    assert streak_exercise == 3, f"Expected 3 for Exercise, got {streak_exercise}"
+    assert streak_reading == 2, f"Expected 2 for Reading, got {streak_reading}"
+    assert streak_meditation == 2, f"Expected 2 for Meditation, got {streak_meditation}"
+
 def test_get_habits_to_complete_today(db):
     """
     Test to verify which habits are due for completion today.

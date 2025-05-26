@@ -28,7 +28,7 @@ class Completion:
             completed_date (datetime): The date and time of the completion.
         """
         self.habit_id = habit_id
-        self.completed_date = completed_date or datetime.now()
+        self.completion_date = completed_date or datetime.now()
 
     def __str__(self) -> str:
         """

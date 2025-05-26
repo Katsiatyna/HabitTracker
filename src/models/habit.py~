@@ -74,7 +74,7 @@ class Habit:
                 streak = 1
 
         return streak
-
+        
 
     def __str__(self) -> str:
         """

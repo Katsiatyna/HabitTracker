@@ -23,5 +23,4 @@ def test_user_string_representation():
     Test the string representation of the User class
     """
     user = User("KatsiarynaPetrushenia", "admin@example.com", datetime.now())
-    assert str(user).startswith("User(username=KatsiarynaPetrushenia, email=admin@example.com, creation_date=")
-
+    assert str(user).startswith("User(username=KatsiarynaPetrushenia, email=admin@example.com, creation_date="))

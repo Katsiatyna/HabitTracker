@@ -196,6 +196,40 @@ def cli():
     """
     pass
 
+
+@cli.command()
+def add_user():
+    """
+    Adds a new user to the database.
+    Prompts the user for username and email.
+    Validates that the username and email do not already exist.
+    """
+    while True:
+        # Prompt for username and email
+        username = click.prompt("Enter username")
+        email = click.prompt("Enter email")
+
+        # Check if the username and email already exist
+        users = db.get_all_users()
+        for user in users:
+            if user['username'] == username or user['email'] == email:
+                click.echo("Username or email already exists. Please try again.")
+                break
+        else:
+            # Add the new user to the database
+            db.add_user(username, email)
+            click.echo(f"User {username} added successfully!")
+
+            # Retrieve the newly created user's ID
+            user_id = db.get_user_id(username)
+            if user_id:
+                click.echo(f"User ID {user_id} retrieved for {username}.")
+            else:
+                click.echo("Error retrieving user ID after registration.")
+
+            menu()
+            break
+
 @cli.command()
 def add_habit():
     """

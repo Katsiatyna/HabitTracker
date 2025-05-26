@@ -6,7 +6,7 @@ Description: This module contains unit tests for the Habit class, testing initia
 """
 
 import pytest
-from datetime import datetime, timedelta
+from datetime import datetime
 from src.models.habit import Habit
 
 def test_habit_initialiation():
@@ -46,8 +46,8 @@ def test_calculate_streak_daily():
     # Add completions on consecutive days to maintain streak
     habit.completions = [
         creation_date,
-        creation_date + timedelta(days=1),
-        creation_date + timedelta(days=2)
+        creation_date + datetime.timedelta(days=1),
+        creation_date + datetime.timedelta(days=2)
     ]
 
     #Check if the streak calculation is correct
@@ -63,9 +63,9 @@ def test_calculate_streak_broken():
     # Add completions on consecutive days to maintain streak
     habit.completions = [
         creation_date,
-        creation_date + timedelta(days=1),
-        creation_date + timedelta(days=2),
-        creation_date + timedelta(days=4) # Gap of 2 days
+        creation_date + datetime.timedelta(days=1),
+        creation_date + datetime.timedelta(days=2),
+        creation_date + datetime.timedelta(days=4) # Gap of 2 days
     ]
 
     #Check if the streak calculation is correct
@@ -81,8 +81,8 @@ def test_calculate_streak_flexible():
     # Add completions on consecutive days to maintain streak
     habit.completions = [
         creation_date,
-        creation_date + timedelta(days=3),
-        creation_date + timedelta(days=6),
+        creation_date + datetime.timedelta(days=3),
+        creation_date + datetime.timedelta(days=6),
     ]
 
     #Check if the streak calculation is correct

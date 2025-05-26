@@ -36,5 +36,8 @@ class User:
     def __str__(self) -> str:
         """
         Returns a string representation of the User object.
+
+        Returns:
+            str: A string containing the username, email, and creation date of the user.
         """
         return f"User(username={self.username}, email={self.email}, creation_date={self.creation_date})"
